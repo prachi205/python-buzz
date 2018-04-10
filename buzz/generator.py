@@ -1,4 +1,5 @@
 import random
+import pandas
 
 buzz = ('continuous testing', 'continuous integration','continuous deployment', 'continuous improvement', 'devops')
 adjectives = ('complete', 'modern', 'self-service', 'integrated', 'end-to-end')
