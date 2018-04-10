@@ -1,3 +1,5 @@
+import sys
+sys.path.append('/home/psoni/python-buzz')
 from buzz import generator
 import xmlrunner
 import unittest
