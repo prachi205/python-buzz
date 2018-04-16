@@ -18,10 +18,10 @@ pipeline {
         stage ('Install_Requirements') {
             steps {
                 sh """
+                    export PATH=${VIRTUAL_ENV}/bin:${PATH}
                     [ -d venv ] && rm -rf venv
                     conda-env create -q -p ${VIRTUAL_ENV} -f "${env.WORKSPACE}/environment.yml"
 		    source activate ${VIRTUAL_ENV}
-                    export PATH=${VIRTUAL_ENV}/bin:${PATH}
                     pip install --upgrade pip
                     pip install -r requirements.txt
                     make clean
