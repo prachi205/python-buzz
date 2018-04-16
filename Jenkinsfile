@@ -69,10 +69,6 @@ pipeline {
                 }
             }
         }
-		stage('Deploy')
-		{
-			ansiblePlaybook playbook: './deploy.yml'
-		}
 
     }
 
