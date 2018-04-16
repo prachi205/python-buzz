@@ -25,7 +25,6 @@ pipeline {
                     [ -d venv ] && rm -rf venv
                     conda create -p ${VIRTUAL_ENV}
 		    source activate ${VIRTUAL_ENV}
-                    pip install --upgrade pip
                     pip install -r requirements.txt
                     make clean
                 """
