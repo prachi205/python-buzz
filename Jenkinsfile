@@ -23,7 +23,7 @@ pipeline {
                     export PATH=/home/psoni/anaconda3/bin:$PATH
                     [ -d venv ] && rm -rf venv
                     conda create -p ${VIRTUAL_ENV}
-		            source activate ${VIRTUAL_ENV}
+		    source activate ${VIRTUAL_ENV}
                     pip install -r requirements.txt
                     make clean
                 """
@@ -57,6 +57,7 @@ pipeline {
 		        stage ('Unit Tests') {
             steps {
                 sh """#!/bin/bash -ex
+                    export PATH=/home/psoni/anaconda3/bin:$PATH
                     source activate ${VIRTUAL_ENV}
                     python ./tests/test.py
                 """
