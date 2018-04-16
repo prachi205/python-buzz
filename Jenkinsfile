@@ -19,11 +19,12 @@ pipeline {
 
         stage ('Install_Requirements') {
             steps {
-                sh """
+                sh """#!/bin/bash -ex
                     export PATH=/home/psoni/anaconda3/bin:$PATH
 		    echo $PATH
                     [ -d venv ] && rm -rf venv
-                    conda-env create -q -p ${VIRTUAL_ENV} -f "${env.WORKSPACE}/environment.yml"
+                    conda create -p ${VIRTUAL_ENV}
+		    source activate ${VIRTUAL_ENV}
                     pip install --upgrade pip
                     pip install -r requirements.txt
                     make clean
