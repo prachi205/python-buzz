@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env groovy
 
 pipeline {
     agent any
@@ -24,7 +24,6 @@ pipeline {
 		    echo $PATH
                     [ -d venv ] && rm -rf venv
                     conda-env create -q -p ${VIRTUAL_ENV} -f "${env.WORKSPACE}/environment.yml"
-		    source activate ${VIRTUAL_ENV}
                     pip install --upgrade pip
                     pip install -r requirements.txt
                     make clean
