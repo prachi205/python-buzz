@@ -19,6 +19,7 @@ pipeline {
             steps {
                 sh """
                     export PATH=~/anaconda3/bin:$PATH
+		    echo $PATH
                     [ -d venv ] && rm -rf venv
                     conda-env create -q -p ${VIRTUAL_ENV} -f "${env.WORKSPACE}/environment.yml"
 		    source activate ${VIRTUAL_ENV}
