@@ -32,13 +32,11 @@ pipeline {
 
         stage ('Check_style') {
             steps {
-                sh """
-                    export PATH=${VIRTUAL_ENV}/bin:${PATH}
-                    make pep8 | tee pep8.log || true
+                sh """#!/bin/bash -ex
+                    find . -iname "*.py" | xargs pep8 | tee pep8.log
                 """
-                sh """
-                    export PATH=${VIRTUAL_ENV}/bin:${PATH}
-                    make pylint | tee pylint.log || true
+                sh """#!/bin/bash -ex
+                    find . -iname "*.py" | xargs pylint | tee pylint.log
                 """
                 step([$class: 'WarningsPublisher',
                   parserConfigurations: [[
