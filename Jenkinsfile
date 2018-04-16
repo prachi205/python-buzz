@@ -19,7 +19,7 @@ pipeline {
             steps {
                 sh """
                     [ -d venv ] && rm -rf venv
-                    conda create -p ${VIRTUAL_ENV} -y
+                    conda env create -q -p ${VIRTUAL_ENV} -f "${env.WORKSPACE}/environment.yml"
 		    source activate ${VIRTUAL_ENV}
                     export PATH=${VIRTUAL_ENV}/bin:${PATH}
                     pip install --upgrade pip
