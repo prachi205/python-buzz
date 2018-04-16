@@ -40,3 +40,6 @@ clean:
 	@echo "Cleaning up byte compiled python stuff"
 	@echo "Cleaning up test reports"
 	rm -rf test-reports/*
+	rm -rf reports
+	rm pep8.log
+	rm pylint.log
