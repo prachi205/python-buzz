@@ -18,7 +18,7 @@ pipeline {
         stage ('Install_Requirements') {
             steps {
                 sh """
-                    export PATH=~/anaconda3/bin:$PATH
+                    export PATH=/home/psoni/anaconda3/bin:$PATH
 		    echo $PATH
                     [ -d venv ] && rm -rf venv
                     conda-env create -q -p ${VIRTUAL_ENV} -f "${env.WORKSPACE}/environment.yml"
