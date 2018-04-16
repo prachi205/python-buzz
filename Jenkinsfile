@@ -23,7 +23,7 @@ pipeline {
                     export PATH=/home/psoni/anaconda3/bin:$PATH
                     [ -d venv ] && rm -rf venv
                     conda create -p ${VIRTUAL_ENV}
-		    source activate ${VIRTUAL_ENV}
+		            source activate ${VIRTUAL_ENV}
                     pip install -r requirements.txt
                     make clean
                 """
@@ -37,7 +37,7 @@ pipeline {
                     find . -iname "*.py" | xargs pep8 | tee pep8.log
                 """
                 sh """#!/bin/bash -ex
-		    export PATH=/home/psoni/anaconda3/bin:$PATH
+		            export PATH=/home/psoni/anaconda3/bin:$PATH
                     find . -iname "*.py" | xargs pylint | tee pylint.log
                 """
                 step([$class: 'WarningsPublisher',
@@ -52,6 +52,25 @@ pipeline {
                   unstableTotalAll: '0',
                   usePreviousBuildAsReference: true
                 ])
+            }
+        }
+		        stage ('Unit Tests') {
+            steps {
+                sh """#!/bin/bash -ex
+                    source activate ${VIRTUAL_ENV}
+                    python ./tests/test.py
+                """
+            }
+
+            post {
+                always {
+                    junit keepLongStdio: true, testResults: 'test-reports/*.xml'
+                    publishHTML target: [
+                        reportDir: 'test-reports',
+                        reportFiles: 'index.html',
+                        reportName: 'Unit Test'
+                    ]
+                }
             }
         }
 
