@@ -10,6 +10,4 @@
   - name: git pull
     git: repo={{repo_url}} dest=/home/psoni/deploy version=master
   - name: build the image
-    command: docker build -t buzz_app /home/psoni/deploy
-  - name: run the site in a docker container
-    command: docker run -t buzz_app
+    command: docker run hello-world
