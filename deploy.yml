@@ -1,0 +1,11 @@
+- name: example copying file with owner and permissions
+  hosts: db1
+
+  vars:
+    repo_url: https://github.com/prachi205/python-buzz.git
+    repo_remote: origin
+    repo_version: master
+
+  tasks:
+  - name: git pull
+    git: repo={{repo_url}} dest=/home/psoni/deploy version=master

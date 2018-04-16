@@ -69,6 +69,16 @@ pipeline {
                 }
             }
         }
+		stage('Deploy')
+		{
+		steps {
+        ansiblePlaybook('./deploy.yml') {
+        ansibleName('2.5.0')
+        sudo(true)
+        sudoUser("psoni")
+    }
+}
+		}
 
     }
 
