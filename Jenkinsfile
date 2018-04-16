@@ -73,7 +73,7 @@ pipeline {
 		{
 		steps
 		{
-		ansiblePlaybook(playbook: 'deploy.yml', sudo: true, sudoUser: psoni)ss
+		ansiblePlaybook playbook: 'deploy.yml'
 		}
 		}
 
