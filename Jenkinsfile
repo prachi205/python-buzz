@@ -19,7 +19,8 @@ pipeline {
             steps {
                 sh """
                     [ -d venv ] && rm -rf venv
-                    virtualenv venv
+                    conda create -p ${VIRTUAL_ENV}
+					source activate venv
                     export PATH=${VIRTUAL_ENV}/bin:${PATH}
                     pip install --upgrade pip
                     pip install -r requirements.txt
@@ -33,24 +34,23 @@ pipeline {
                 sh """
                     [ -d report ] || mkdir report
                     export PATH=${VIRTUAL_ENV}/bin:${PATH}
-                    make check || true
                 """
                 sh """
                     export PATH=${VIRTUAL_ENV}/bin:${PATH}
-                    make flake8 | tee report/flake8.log || true
+                    make pep8 | tee pep8.log || true
                 """
                 sh """
                     export PATH=${VIRTUAL_ENV}/bin:${PATH}
-                    make pylint | tee report/pylint.log || true
+                    make pylint | tee pylint.log || true
                 """
                 step([$class: 'WarningsPublisher',
                   parserConfigurations: [[
                     parserName: 'Pep8',
-                    pattern: 'report/flake8.log'
+                    pattern: 'pep8.log'
                   ],
                   [
                     parserName: 'pylint',
-                    pattern: 'report/pylint.log'
+                    pattern: 'pylint.log'
                   ]],
                   unstableTotalAll: '0',
                   usePreviousBuildAsReference: true
