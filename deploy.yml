@@ -16,7 +16,7 @@
        path=/home/psoni/deploy
        state=present
   - name: run the site in a docker container
-      docker:
+    docker:
         name: site1
         image: "built-by-ansible:ex1"
         state: reloaded
