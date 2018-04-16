@@ -74,8 +74,8 @@ pipeline {
 		steps
 		{
 		ansiblePlaybook playbook: 'deploy.yml' 
-		sudo: true
-		sudoUser: psoni
+		ansiblePlaybook  sudo: true
+		ansiblePlaybook  sudoUser: psoni
 		}
 		}
 
