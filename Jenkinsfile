@@ -33,9 +33,11 @@ pipeline {
         stage ('Check_style') {
             steps {
                 sh """#!/bin/bash -ex
+		    export PATH=/home/psoni/anaconda3/bin:$PATH
                     find . -iname "*.py" | xargs pep8 | tee pep8.log
                 """
                 sh """#!/bin/bash -ex
+		    export PATH=/home/psoni/anaconda3/bin:$PATH
                     find . -iname "*.py" | xargs pylint | tee pylint.log
                 """
                 step([$class: 'WarningsPublisher',
