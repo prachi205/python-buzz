@@ -20,7 +20,7 @@ pipeline {
                 sh """
                     [ -d venv ] && rm -rf venv
                     conda create -p ${VIRTUAL_ENV}
-					source activate venv
+		    source activate ${VIRTUAL_ENV}
                     export PATH=${VIRTUAL_ENV}/bin:${PATH}
                     pip install --upgrade pip
                     pip install -r requirements.txt
