@@ -66,11 +66,6 @@ pipeline {
             post {
                 always {
                     junit keepLongStdio: true, testResults: 'test-reports/*.xml'
-                    publishHTML target: [
-                        reportDir: 'test-reports',
-                        reportFiles: 'index.html',
-                        reportName: 'Unit Test'
-                    ]
                 }
             }
         }
