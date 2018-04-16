@@ -21,7 +21,6 @@ pipeline {
             steps {
                 sh """#!/bin/bash -ex
                     export PATH=/home/psoni/anaconda3/bin:$PATH
-		    echo $PATH
                     [ -d venv ] && rm -rf venv
                     conda create -p ${VIRTUAL_ENV}
 		    source activate ${VIRTUAL_ENV}
@@ -33,10 +32,6 @@ pipeline {
 
         stage ('Check_style') {
             steps {
-                sh """
-                    [ -d report ] || mkdir report
-                    export PATH=${VIRTUAL_ENV}/bin:${PATH}
-                """
                 sh """
                     export PATH=${VIRTUAL_ENV}/bin:${PATH}
                     make pep8 | tee pep8.log || true

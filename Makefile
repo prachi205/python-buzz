@@ -29,15 +29,14 @@ PYTHON=python
 all: clean check flake8 pylint tests
 
 pep8:
-	pep8 buzz/generator.py
+	pep8 ./buzz/generator.py
 
 pylint:
-	pylint buzz/generator.py
+	pylint ./buzz/generator.py
 
 clean:
 	@echo "Cleaning up stuff"
 	rm -rf MANIFEST
 	@echo "Cleaning up byte compiled python stuff"
-	find . -type f -regex ".*\.py[co]$$" -delete
 	@echo "Cleaning up test reports"
 	rm -rf test-reports/*
