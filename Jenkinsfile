@@ -73,7 +73,7 @@ pipeline {
 		{
 		steps
 		{
-		ansiblePlaybook playbook: 'deploy.yml'
+		ansiblePlaybook playbook: 'deploy.yml' -s -U psoni
 		}
 		}
 
