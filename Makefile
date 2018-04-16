@@ -32,7 +32,7 @@ pep8:
 	pep8 ./buzz/generator.py
 
 pylint:
-	pylint ./buzz/generator.py
+	find . -iname "*.py" | xargs pylint
 
 clean:
 	@echo "Cleaning up stuff"
