@@ -19,4 +19,4 @@ def generate_buzz():
     return phrase.title()
 
 if __name__ == "__main__":
-    print generate_buzz()
+    print(generate_buzz())
